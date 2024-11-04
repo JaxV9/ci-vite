@@ -1,33 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [result, setResult] = useState<number>(0)
+  const [firstInput, setFirstInput] = useState<number>(0)
+  const [secondInput, setSecondInput] = useState<number>(0)
+  const [currentOperation, setCurrentOperation] = useState<string>("--Please choose an operation--")
+
+  const catchInput = (input: string, setter: Dispatch<SetStateAction<number>>) => {
+    let currentInput = Number(input)
+    setter(currentInput)
+  }
+
+  const catchCurrentOperation = (operation: string) => {
+    setCurrentOperation(operation)
+  }
+
+  useEffect(() => {
+      if(currentOperation === "addition") {
+        setResult((firstInput + secondInput))
+      }
+      if(currentOperation === "subtraction") {
+        setResult((firstInput - secondInput))
+      }
+      if(currentOperation === "division") {
+        setResult((firstInput / secondInput))
+      }
+      if(currentOperation === "multiplication") {
+        setResult(firstInput * secondInput)
+      }
+  },[firstInput, secondInput, currentOperation])
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='calculator-container'>
+        <h1>Calculator</h1>
+        <input type='number' value={firstInput} onChange={(e)=> catchInput(e.target.value, setFirstInput)}/>
+        <select name="Operation" onChange={(e) => catchCurrentOperation(e.target.value)}>
+          <option value={currentOperation}>{currentOperation}</option>
+          <option value="addition">Addition</option>
+          <option value="subtraction">Subtraction</option>
+          <option value="division">Division</option>
+          <option value="multiplication">Multiplication</option>
+        </select>
+        <input type='number' value={secondInput} onChange={(e)=> catchInput(e.target.value, setSecondInput)}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      <div className='result'>
+          <h2>{result}</h2>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
