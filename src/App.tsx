@@ -8,7 +8,7 @@ function App() {
   const [currentOperation, setCurrentOperation] = useState<string>("--Please choose an operation--")
 
   const catchInput = (input: string, setter: Dispatch<SetStateAction<number>>) => {
-    let currentInput = Number(input)
+    const currentInput = Number(input)
     setter(currentInput)
   }
 
