@@ -1,3 +1,34 @@
+Équipe :
+
+|NOM|Prénom|
+|---|---|
+|LAYAN|Jason|
+|PRUD'HOMME|Arthur|
+
+Voir les tickets dans les issues.
+
+Explications des choix techniques :
+- utilisation de React typescript pour le front car les membres de l'équipe sont à l'aise avec cette technologie,
+
+- utilisation de Vitest pour les tests car on l'a vu en cours
+
+- vous pouvez retrouver dans /src/app.tsx le code de la page d'accueil et dans /tests/index.test.tsx les tests de cette même page.
+
+Explication de la CI/CD :
+- Des Issues sont créées pour chaque implémentation
+
+- La feature est faite sur une branche dédiée
+
+- Une fois la feature terminée, elle est merge sur la main et clôture l'issue dans le même temps en ajoutant son tag dans la description du merge
+
+- Une fois sur main, une nouvelle release est faite ce qui déclenche la CI et à l'issu de toutes ses étapes, termine son déploiement sur Vercel
+
+- La CI suit les étapes suivantes : install, test, lint, build et deploy
+
+- Le déploiement n'est déclenché que dans le cas d'une nouvelle release
+
+Pour acceder à l'application déployer, cliquez ici : https://ci-vite-pi.vercel.app/
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
