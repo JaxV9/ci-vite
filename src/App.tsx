@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import './App.css'
 
-function App() {
+export const App = () => {
   const [result, setResult] = useState<number>(0)
   const [firstInput, setFirstInput] = useState<number>(0)
   const [secondInput, setSecondInput] = useState<number>(0)
